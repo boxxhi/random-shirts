@@ -21,11 +21,15 @@
                         <a class="nav-link fw-normal active" href="/home">Inicio</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link fw-normal" href="/login">Login</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link fw-normal" href="/designer">Diseña el tuyo</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link fw-normal" href="/contact">Contacto</a>
                     </li>
+
                     </ul>
                 </div>
             </nav>
