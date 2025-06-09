@@ -1,63 +1,58 @@
-<!-- filepath: resources/views/contacto.blade.php -->
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Contacto - Camisas Random</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Shirts - Contacto</title>
+
+    @vite('resources/css/app.css')
+
 </head>
-<body class="d-flex flex-column min-vh-100">
-    <!-- Header -->
-    <header class="p-3 mb-2">
-        <div class="container">
-            <nav class="navbar navbar-expand navbar">
-                <a class="navbar-brand" href="#">Random Shirts</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link fw-normal" href="/home">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link fw-normal" href="/login">Login</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link fw-normal" href="/designer">Diseña el tuyo</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link fw-normal active" href="/contact">Contacto</a>
-                    </li>
-                    </ul>
-                </div>
-            </nav>
-        </div>
-    </header>
+<body class="min-h-svh flex flex-col items-center justify-center bg-gradient-to-br from-blue-200 via-slate-50 to-blue-200 gap-15">
 
-    <main class="container mb-5 w-25 text-center">
-        <h2 class="mb-4">¿Quiénes somos?</h2>
-        <p>
-            En <strong>Random Shirts</strong> nos apasiona la moda y los memes. Somos una tienda dedicada a ofrecer camisas únicas y divertidas para todos los gustos, combinando calidad, estilo y humor en cada producto.
-        </p>
-        <p>
-            Nuestro objetivo es que cada cliente encuentre la Camisa perfecta para expresar su personalidad y disfrutar de la moda de una manera original.
-        </p>
+    <div class="text-center">
+        <h1 class="text-5xl font-bold mb-2">Random Shirts</h1>
+        <p>Somos una pagina de camisetas en pleno crecimiento. Agradecemos y tomamos en cuenta tu opinion para continuar mejorarando!</p>
+    </div>
 
-        <h2 class="mb-4 mt-5">Contacto</h2>
-        <ul class="list-unstyled">
-            <li><strong>Correo electrónico:</strong> contacto@tiendaderopa.com</li>
-            <li><strong>Teléfono:</strong> +503 xxxx xxxx</li>
-            <li><strong>Dirección:</strong> Calle xxxxxxxx, Ciudad de San Miguel, El salvador</li>
-        </ul>
-        <p>¡No dudes en escribirnos para cualquier duda, sugerencia o comentario!</p>
-    </main>
 
-    <!-- Footer -->
-    <footer class="bg-info text-center py-3 mt-auto">
-        <div class="container">
-            <small>&copy; {{ date('Y') }} Camisas Random. Todos los derechos reservados.</small>
-        </div>
-    </footer>
+    <div class="bg-white p-8 rounded-lg shadow-md w-96">
+        <a href="/home" class="hover:underline text-sm text-gray-600">Volver</a>
+
+        @if ($errors->any())
+            <div class="bg-red-100 text-red-700 p-4 rounded mb-4">
+                @foreach ($errors->all() as $error)
+                    <p>{{ $error }}</p>
+                @endforeach
+            </div>
+        @endif
+
+        @if (session('success'))
+            <div class="bg-green-100 text-green-700 p-4 rounded mb-4">
+                <p>{{ session('success') }}</p>
+            </div>
+        @endif
+
+        <form action="/sendcontact" method="POST" class="mt-6">
+            @csrf
+            <div class="mb-4">
+                <label for="name" class="block text-sm font-medium text-gray-700">Nombre</label>
+                <input type="text" id="name" name="name" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+            </div>
+
+            <div class="mb-4">
+                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                <input type="email" id="email" name="email" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
+            </div>
+
+            <div class="mb-4">
+                <label for="message" class="block text-sm font-medium text-gray-700">Mensaje</label>
+                <textarea id="message" name="message" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"></textarea>
+            </div>
+
+            <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition duration-200">Enviar</button>
+        </form>
+    </div>
+
 </body>
 </html>

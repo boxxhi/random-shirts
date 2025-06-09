@@ -25,6 +25,8 @@ class ClienteFactory extends Factory
     {
         return [
             'nombre' => fake()->name(),
+            'usuario' => fake()->unique()->userName(),
+            'contrasena' => fake()->unique()->password(),
             'correo' => fake()->unique()->safeEmail(),
             'direccion' => fake()->unique()->address()
         ];

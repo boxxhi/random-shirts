@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pedidos', function (Blueprint $table) {
+        Schema::create('camisas', function (Blueprint $table) {
             $table->id();
-            $table->integer('cliente_id');
-            $table->dateTime('fecha');
+            $table->text('imagen')->nullable(); // Imagen en base64
+            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Llave foránea al usuario
+            $table->string('talla'); // Talla de la camisa
+            $table->timestamps();
         });
     }
 
@@ -23,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pedidos');
+        Schema::dropIfExists('camisas');
     }
 };
